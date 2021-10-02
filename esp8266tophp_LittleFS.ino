@@ -342,10 +342,15 @@ void loop() {
         
           String Str = Serial.readString();
           if ((t0-millis())<300000){
-          postData = "data=" + Str + "\n" ;
+          postData = Str + "\n" ;
           appendFile(LITTLEFS, "/datadir/swdata.txt", postData);
           }
           else if((t0-millis())>=300000){
+            str= readFile(LITTLEFS, "/datadir/swdata.txt");
+            char * pch;
+            pch = strtok (str,"\n");
+            while (pch != NULL){
+              
 
 //          HttpAddrStr =  ServerAddrStr + "post-data.php";
 
@@ -359,7 +364,7 @@ void loop() {
 
  //         http.begin(HttpAddrStr);              //Specify request destination
           http.addHeader("Content-Type", "application/x-www-form-urlencoded");    //Specify content-type header
-          int httpCode = http.POST(postData);   //Send the request
+          int httpCode = http.POST(pch);   //Send the request
           String payload = http.getString();    //Get the response payload
 
           Serial.println(payload);    //Print request response payload
@@ -373,6 +378,11 @@ void loop() {
           delay(100);            // wait for 1 second.
           digitalWrite(LED, HIGH); // turn the LED on.
         */
+      
+      //printf ("%s\n",pch);
+      pch = strtok (NULL, "\n");
+      }
+      t0 = millis();
       } 
       }break; // wi-fi command
     //////////////////////////////////
