@@ -191,7 +191,7 @@ void loop() {
              str= readFile(LITTLEFS, "/swdata.txt");
             char * pch;
             pch = strtok (str,"\n");
-            while (pch != "start"){
+            while (String(pch) != "start"){
 
 //          HttpAddrStr =  ServerAddrStr + "post-data.php";
 
@@ -205,7 +205,7 @@ void loop() {
 
  //         http.begin(HttpAddrStr);              //Specify request destination
           http.addHeader("Content-Type", "application/x-www-form-urlencoded");    //Specify content-type header
-          int httpCode = http.POST(postData);   //Send the request
+          int httpCode = http.POST(pch);   //Send the request
           String payload = http.getString();    //Get the response payload
 
           Serial.println(payload);    //Print request response payload
