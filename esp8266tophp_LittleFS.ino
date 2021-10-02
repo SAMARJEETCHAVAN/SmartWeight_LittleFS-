@@ -349,7 +349,7 @@ void loop() {
             str= readFile(LITTLEFS, "/datadir/swdata.txt");
             char * pch;
             pch = strtok (str,"\n");
-            while (pch != NULL){
+            while (pch != "START_POINT"){
               
 
 //          HttpAddrStr =  ServerAddrStr + "post-data.php";
