@@ -150,7 +150,6 @@ void setup() {
   }
   
 
-  writeFile("/swdata.txt", "start");
   
 }
 
@@ -165,6 +164,7 @@ int t0 = millis();
     Serial.println("LittleFS mount failed");
     return;
   }
+  writeFile("/swdata.txt", "start");
 void loop() {
   char c;
   HTTPClient http;    //Declare object of class HTTPClient
